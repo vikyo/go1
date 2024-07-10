@@ -1,2 +1,2 @@
-# golang-tutorial-1
-go lang tutorial part 1 of max udemy
+# go1
+go tutorial part 1 of max
