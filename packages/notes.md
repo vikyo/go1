@@ -22,6 +22,7 @@ const for constant variables.
 31:
 fmt.Sprintf returns the formatted string, printf outputs string in condolr, does not return anything.
 
+Section 3: Packages
 58:
 Every package must go into its own folder/subfolder, the folder name should be same as the package name.
 
