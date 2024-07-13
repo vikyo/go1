@@ -21,3 +21,18 @@ const for constant variables.
 
 31:
 fmt.Sprintf returns the formatted string, printf outputs string in condolr, does not return anything.
+
+58:
+Every package must go into its own folder/subfolder, the folder name should be same as the package name.
+
+60:
+The functions that start with uppercase are only exported from the package, only those functions we can use
+outside the package into another package.
+
+61:
+go package discovery: https://pkg.go.dev/google.golang.org/api/discovery/v1
+`go get` is used to get all the third party packages used by your project.
+To use a third party library:
+1 - go to discovery url, search and run go get <package github link>.
+2 - This adds require statement in go.mod.
+3 - Run go get to get the dependency and then add in the import statement.
