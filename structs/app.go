@@ -26,7 +26,8 @@ func main() {
 	fmt.Println("appUser in main: ", &appUser)
 	fmt.Printf("Address of appUser in main: %p\n", &appUser)
 	// outputUserDetails(&appUser)
-	appUser.outputUserDetails2()
+	// appUser.outputUserDetails2()
+	appUser.outputUserDetails3()
 	fmt.Println("appUser in main:", appUser.firstName, appUser.lastName, appUser.birthdate, appUser.createdAt)
 }
 
@@ -42,6 +43,13 @@ func (u user) outputUserDetails2() {
 	fmt.Printf("Address of user in outputUserDetails2: %p\n", &u)
 	u.firstName = "test"
 	fmt.Println("user in outputUserDetails2:", u.firstName, u.lastName, u.birthdate, u.createdAt)
+}
+
+func (u *user) outputUserDetails3() {
+	fmt.Println("App user in outputUserDetails3: ", *u)
+	fmt.Printf("Address of user in outputUserDetails3: %p\n", u)
+	u.firstName = "test"
+	fmt.Println("user in outputUserDetails3:", u.firstName, u.lastName, u.birthdate, u.createdAt)
 }
 
 func getUserData(promptText string) string {
