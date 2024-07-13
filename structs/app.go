@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"time"
 )
@@ -17,16 +18,28 @@ func main() {
 	lastNameInput := getUserData("Please enter your last name: ")
 	birthdateInput := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
 
-	var appUser = user{
-		firstName: firstNameInput,
-		lastName:  lastNameInput,
-		birthdate: birthdateInput,
-		createdAt: time.Now(),
+	var appUser, err = newUser(firstNameInput, lastNameInput, birthdateInput)
+
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
 
 	appUser.outputUserDetails()
 	appUser.clearUserName()
 	appUser.outputUserDetails()
+}
+
+func newUser(firstNameInput, lastNameInput, birthdateInput string) (*user, error) {
+	if firstNameInput == "" || lastNameInput == "" || birthdateInput == "" {
+		return nil, errors.New("invalid inputs")
+	}
+	return &user{
+		firstName: firstNameInput,
+		lastName:  lastNameInput,
+		birthdate: birthdateInput,
+		createdAt: time.Now(),
+	}, nil
 }
 
 func (u user) outputUserDetails() {
@@ -42,6 +55,6 @@ func (u *user) clearUserName() {
 func getUserData(promptText string) string {
 	fmt.Print(promptText)
 	var value string
-	fmt.Scan(&value)
+	fmt.Scanln(&value)
 	return value
 }
