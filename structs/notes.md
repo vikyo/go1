@@ -11,3 +11,5 @@ so u.firstName and (*u).firstName both will work in case of structs.
 In Go, when you define a method with a receiver, the behavior of that method depends on whether the receiver is a value receiver or a pointer receiver.
 
 In code, the method outputUserDetails2 is defined with a value receiver (u user). This means that the method operates on a copy of the user struct, not the original struct itself. Therefore, any modifications made inside outputUserDetails2 do not affect the original appUser struct.
+
+While mutating the value using reciver pattern, if we want to muatate the original value then we have to use pointer reciever becuase normal reciever will work just as variables where copy of variable is worked upon, so if we want the change on original data and not on copy then we should use pointer recivers.
