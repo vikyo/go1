@@ -23,7 +23,7 @@ func main() {
 		birthdate: birthdateInput,
 		createdAt: time.Now(),
 	}
-	fmt.Println("appUser in main: ", appUser)
+	fmt.Println("appUser in main: ", &appUser)
 	fmt.Printf("Address of appUser in main: %p\n", &appUser)
 	outputUserDetails(appUser)
 	fmt.Println("appUser in main:", appUser.firstName, appUser.lastName, appUser.birthdate, appUser.createdAt)
