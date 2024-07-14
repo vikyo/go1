@@ -7,12 +7,22 @@ import (
 	"strings"
 
 	"example.com/note/model"
+	"example.com/note/model/todo"
 )
 
 const fileName = "notes.json"
+const todoFileName = "todo.json"
 
 func main() {
-	titleInput, contentInput := getNotesDate()
+	titleInput, contentInput := getNotesData()
+	todoText := getTodoData()
+	newTodo, err := todo.New(todoText)
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
 	newNote, err := model.New(titleInput, contentInput)
 
 	if err != nil {
@@ -28,10 +38,25 @@ func main() {
 		return
 	}
 
-	fmt.Printf("saved the note")
+	fmt.Println("saved the note")
+
+	newTodo.DisplayTodo()
+	err = newTodo.Save(todoFileName)
+
+	if err != nil {
+		fmt.Println("Saving todo failed")
+		return
+	}
+
+	fmt.Println("saved the todo")
 }
 
-func getNotesDate() (string, string) {
+func getTodoData() string {
+	text := getUserInput("Enter text: ")
+	return text
+}
+
+func getNotesData() (string, string) {
 	titleInput := getUserInput("Enter title: ")
 	contentInput := getUserInput("Enter content: ")
 	return titleInput, contentInput
@@ -39,7 +64,7 @@ func getNotesDate() (string, string) {
 
 func getUserInput(prmopt string) string {
 	var value string
-	fmt.Printf(prmopt)
+	fmt.Println(prmopt)
 
 	// Handle long user input
 	reader := bufio.NewReader(os.Stdin)
