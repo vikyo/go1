@@ -1,55 +1,38 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"time"
+	"structs/user"
 )
-
-type user struct {
-	firstName string
-	lastName  string
-	birthdate string
-	createdAt time.Time
-}
 
 func main() {
 	firstNameInput := getUserData("Please enter your first name: ")
 	lastNameInput := getUserData("Please enter your last name: ")
 	birthdateInput := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
 
-	var appUser, err = newUser(firstNameInput, lastNameInput, birthdateInput)
+	var appUser *user.UserModel
+	var err error
+	var adminUser *user.AdminUserModel
 
+	appUser, err = user.NewUser(firstNameInput, lastNameInput, birthdateInput)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	appUser.outputUserDetails()
-	appUser.clearUserName()
-	appUser.outputUserDetails()
-}
-
-func newUser(firstNameInput, lastNameInput, birthdateInput string) (*user, error) {
-	if firstNameInput == "" || lastNameInput == "" || birthdateInput == "" {
-		return nil, errors.New("invalid inputs")
+	adminUser, err = user.NewAdminUser("test@test.com", "1234")
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
-	return &user{
-		firstName: firstNameInput,
-		lastName:  lastNameInput,
-		birthdate: birthdateInput,
-		createdAt: time.Now(),
-	}, nil
-}
 
-func (u user) outputUserDetails() {
-	fmt.Println("user in outputUserDetails:", u.firstName, u.lastName, u.birthdate, u.createdAt)
-}
+	appUser.OutputUserDetails()
+	appUser.ClearUserName()
+	appUser.OutputUserDetails()
 
-func (u *user) clearUserName() {
-	fmt.Println("clearing name")
-	u.firstName = ""
-	u.lastName = ""
+	adminUser.OutputUserDetails()
+	adminUser.ClearUserName()
+	adminUser.OutputUserDetails()
 }
 
 func getUserData(promptText string) string {

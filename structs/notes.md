@@ -15,3 +15,11 @@ In code, the method outputUserDetails2 is defined with a value receiver (u user)
 
 82:
 While mutating the value using reciver pattern, if we want to muatate the original value then we have to use pointer reciever becuase normal reciever will work just as variables where copy of variable is worked upon, so if we want the change on original data and not on copy then we should use pointer recivers.
+
+85:
+Inside a struct also if the field name is in capitals then only it is available outside the package, otherwise it is not, even if
+struct itself is available.
+
+87:
+go has no classes and no inheritence.
+we can give a struct inside other struct to extend the functionality.
