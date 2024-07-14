@@ -10,8 +10,14 @@ import (
 	"example.com/note/model/todo"
 )
 
-const fileName = "notes.json"
-const todoFileName = "todo.json"
+type saver interface {
+	Save() error
+}
+
+type outputtable interface {
+	saver
+	Dispay()
+}
 
 func main() {
 	titleInput, contentInput := getNotesData()
@@ -30,25 +36,30 @@ func main() {
 		return
 	}
 
-	newNote.DisplayNote()
-	err = newNote.Save(fileName)
+	err = outputData(newNote)
 
 	if err != nil {
-		fmt.Println("Saving note failed")
 		return
 	}
 
-	fmt.Println("saved the note")
+	outputData(newTodo)
+}
 
-	newTodo.DisplayTodo()
-	err = newTodo.Save(todoFileName)
+func outputData(data outputtable) error {
+	data.Dispay()
+	return saveDate(data)
+}
+
+func saveDate(data saver) error {
+	err := data.Save()
 
 	if err != nil {
 		fmt.Println("Saving todo failed")
-		return
+		return err
 	}
 
 	fmt.Println("saved the todo")
+	return nil
 }
 
 func getTodoData() string {

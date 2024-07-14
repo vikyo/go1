@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+const fileName = "todo.json"
+
 type TodoModel struct {
 	Text string `json:"todoText"`
 }
@@ -20,11 +22,11 @@ func New(text string) (*TodoModel, error) {
 	}, nil
 }
 
-func (todo *TodoModel) DisplayTodo() {
+func (todo *TodoModel) Dispay() {
 	fmt.Println("todo text is :", todo.Text)
 }
 
-func (data *TodoModel) Save(fileName string) error {
+func (data *TodoModel) Save() error {
 	file, err := json.Marshal(data)
 
 	if err != nil {

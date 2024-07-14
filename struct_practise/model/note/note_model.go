@@ -8,6 +8,8 @@ import (
 	"time"
 )
 
+const fileName = "notes.json"
+
 type NoteModel struct {
 	Title     string    `json:"noteTitle"`
 	Content   string    `json:"noteContent"`
@@ -25,12 +27,12 @@ func New(title, content string) (*NoteModel, error) {
 	}, nil
 }
 
-func (note *NoteModel) DisplayNote() {
+func (note *NoteModel) Dispay() {
 	fmt.Println("title is :", note.Title)
 	fmt.Println("contnet is: ", note.Content)
 }
 
-func (data *NoteModel) Save(fileName string) error {
+func (data *NoteModel) Save() error {
 	file, err := json.Marshal(data)
 
 	if err != nil {
