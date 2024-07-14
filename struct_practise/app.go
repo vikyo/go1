@@ -12,6 +12,8 @@ import (
 
 type saver interface {
 	Save() error
+	PrintFailedMessage()
+	PrintSuccessMessage()
 }
 
 type outputtable interface {
@@ -54,11 +56,11 @@ func saveDate(data saver) error {
 	err := data.Save()
 
 	if err != nil {
-		fmt.Println("Saving todo failed")
+		data.PrintFailedMessage()
 		return err
 	}
 
-	fmt.Println("saved the todo")
+	data.PrintSuccessMessage()
 	return nil
 }
 

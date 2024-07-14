@@ -26,6 +26,14 @@ func (todo *TodoModel) Dispay() {
 	fmt.Println("todo text is :", todo.Text)
 }
 
+func (todo *TodoModel) PrintSuccessMessage() {
+	fmt.Println("todo is saved in ", fileName)
+}
+
+func (todo *TodoModel) PrintFailedMessage() {
+	fmt.Println("todo save is failed")
+}
+
 func (data *TodoModel) Save() error {
 	file, err := json.Marshal(data)
 

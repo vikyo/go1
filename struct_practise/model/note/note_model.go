@@ -32,6 +32,14 @@ func (note *NoteModel) Dispay() {
 	fmt.Println("contnet is: ", note.Content)
 }
 
+func (note *NoteModel) PrintSuccessMessage() {
+	fmt.Println("note is saved in ", fileName)
+}
+
+func (note *NoteModel) PrintFailedMessage() {
+	fmt.Println("note save is failed")
+}
+
 func (data *NoteModel) Save() error {
 	file, err := json.Marshal(data)
 
