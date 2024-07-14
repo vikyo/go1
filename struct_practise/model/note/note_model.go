@@ -1,4 +1,4 @@
-package model
+package note
 
 import (
 	"encoding/json"
@@ -26,7 +26,8 @@ func New(title, content string) (*NoteModel, error) {
 }
 
 func (note *NoteModel) DisplayNote() {
-	fmt.Println("title is :", note.Title, "\n", "contnet is: ", note.Content)
+	fmt.Println("title is :", note.Title)
+	fmt.Println("contnet is: ", note.Content)
 }
 
 func (data *NoteModel) Save(fileName string) error {

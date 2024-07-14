@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"example.com/note/model"
+	"example.com/note/model/note"
 	"example.com/note/model/todo"
 )
 
@@ -23,7 +23,7 @@ func main() {
 		return
 	}
 
-	newNote, err := model.New(titleInput, contentInput)
+	newNote, err := note.New(titleInput, contentInput)
 
 	if err != nil {
 		fmt.Println(err)
